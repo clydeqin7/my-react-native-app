@@ -1,104 +1,78 @@
-import React, { Component } from "react";
+import React from 'react';
+import { Button, View, Text } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
-import { Image, FlatList, StyleSheet, Text, View } from "react-native";
-
-var REQUEST_URL =
-    "https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json";
-
-export default class SampleAppMovies extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-            loaded: false
-        };
-        // 在ES6中，如果在自定义的函数里使用了this关键字，则需要对其进行“绑定”操作，否则this的指向会变为空
-        // 像下面这行代码一样，在constructor中使用bind是其中一种做法（还有一些其他做法，如使用箭头函数等）
-        this.fetchData = this.fetchData.bind(this);
-    }
-
-    componentDidMount() {
-        this.fetchData();
-    }
-
-    fetchData() {
-        fetch(REQUEST_URL)
-            .then(response => response.json())
-            .then(responseData => {
-                // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
-                this.setState({
-                    data: this.state.data.concat(responseData.movies),
-                    loaded: true
-                });
-            });
-    }
-
+class HomeScreen extends React.Component {
+    // 配置标题栏
+    static navigationOptions = {
+        title: 'home',
+    };
     render() {
-        if (!this.state.loaded) {
-            return this.renderLoadingView();
-        }
-
         return (
-            <FlatList
-                keyExtractor={(item, index) => index.toString()}
-                data={this.state.data}
-                renderItem={this.renderMovie}
-                style={styles.list}
-            />
-        );
-    }
-
-    renderLoadingView() {
-        return (
-            <View style={styles.container}>
-                <Text>Loading movies...</Text>
-            </View>
-        );
-    }
-
-    renderMovie({ item }) {
-        // { item }是一种“解构”写法，请阅读ES2015语法的相关文档
-        // item也是FlatList中固定的参数名，请阅读FlatList的相关文档
-        return (
-            <View style={styles.container}>
-                <Image
-                    source={{ uri: item.posters.thumbnail }}
-                    style={styles.thumbnail}
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Home Screen</Text>
+                <Button
+                    title='go to details'
+                    onPress={() =>
+                    {this.props.navigation.navigate('Details',
+                        // 传参
+                        {
+                            itemId: 86,
+                            otherParam: 'anything you want here',
+                        })
+                    }}
                 />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <Text style={styles.year}>{item.year}</Text>
-                </View>
             </View>
         );
     }
 }
 
-var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#F5FCFF"
-    },
-    rightContainer: {
-        flex: 1
-    },
-    title: {
-        fontSize: 20,
-        marginBottom: 8,
-        textAlign: "center"
-    },
-    year: {
-        textAlign: "center"
-    },
-    thumbnail: {
-        width: 53,
-        height: 81
-    },
-    list: {
-        paddingTop: 20,
-        backgroundColor: "#F5FCFF"
+class DetailsScreen extends React.Component {
+    // 在标题中使用参数
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.getParam('otherParam', 'A Nested Details Screen'),
+        };
+    };
+    render() {
+        // 接收参数, 提供一个回调值作为默认值
+        const { navigation } = this.props;
+        const itemId = navigation.getParam('itemId', 'default-itemId')
+        const otherParam = navigation.getParam('otherParam', 'defalut-otherParam')
+
+        return (
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>Details Screen</Text>
+                <Text>raw data</Text>
+                <Text>itemId: {itemId}</Text>
+                <Text>otherParam: {otherParam}</Text>
+                <Text>JSON.stringify()</Text>
+                <Text>itemId: {JSON.stringify(itemId)}</Text>
+                <Text>otherParam: {JSON.stringify(otherParam)}</Text>
+                <Button
+                    title='go to details again!'
+                    onPress={() => {this.props.navigation.navigate('Details')}}
+                />
+                <Button
+                    title='go back'
+                    onPress={() => {this.props.navigation.goBack()}}
+                />
+            </View>
+        );
     }
-});
+}
+const RootStack = createStackNavigator(
+    {
+        Home: HomeScreen,
+        Details: DetailsScreen,
+    },
+    {
+        initialRouteName: 'Home',
+    }
+);
+
+export default  class App extends React.Component {
+    render() {
+        return <RootStack/>;
+    }
+}
