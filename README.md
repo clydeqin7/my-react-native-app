@@ -2,13 +2,16 @@
 
 一个学习React Native的项目
 
-# 学习资料
+# 学习资料与工具
 
 [react-native github](https://github.com/facebook/react-native)
 
 [React Native中文网](https://reactnative.cn/)
 
 [react navigation教程](https://reactnavigation.org/)
+[react-native-debugger github](https://github.com/jhen0409/react-native-debugger)
+
+[React-Native学习指南 各种资源的合集](https://github.com/reactnativecn/react-native-guide)
 
 # 新建项目
 
@@ -136,3 +139,76 @@ class DetailsScreen extends React.Component {
 - `navigation` - 页面的[ 导航属性 ](https://reactnavigation.org/docs/zh-Hans/navigation-prop.html)，在页面中的路由为`navigation.state`。
 - `screenProps` - 从导航器组件上层传递的 props
 - `navigationOptions` - 如果未提供新值，将使用的默认或上一个选项
+
+## 图片
+
+```javascript
+// 正确
+<Image source={require("./my-icon.png")} />;
+
+// 错误
+var icon = this.props.active ? "my-icon-active" : "my-icon-inactive";
+<Image source={require("./" + icon + ".png")} />;
+
+// 正确
+var icon = this.props.active
+  ? require("./my-icon-active.png")
+  : require("./my-icon-inactive.png");
+<Image source={icon} />;
+```
+
+### 网络图片
+
+`你需要手动指定图片的尺寸`
+
+```javascript
+// 正确
+<Image source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+       style={{width: 400, height: 400}} />
+
+// 错误
+<Image source={{uri: 'https://facebook.github.io/react/logo-og.png'}} />
+```
+
+### 网络图片的请求参数
+
+```javascript
+// 示例
+<Image
+  source={{
+    uri: "https://facebook.github.io/react/logo-og.png",
+    method: "POST",
+    headers: {
+      Pragma: "no-cache"
+    },
+    body: "Your Body goes here"
+  }}
+  style={{ width: 400, height: 400 }}
+/>
+```
+
+## 定时器
+
+**务必在卸载组件前清除定时器！**
+
+在某个组件被卸载（unmount）之后，计时器却仍然在运行。要解决这个问题，只需铭记`在unmount组件时清除（clearTimeout/clearInterval）所有用到的定时器`即可
+
+```javascript
+import React, { Component } from "react";
+
+export default class Hello extends Component {
+  componentDidMount() {
+    this.timer = setTimeout(() => {
+      console.log("把一个定时器的引用挂在this上");
+    }, 500);
+  }
+  componentWillUnmount() {
+    // 请注意Un"m"ount的m是小写
+
+    // 如果存在this.timer，则使用clearTimeout清空。
+    // 如果你使用多个timer，那么用多个变量，或者用个数组来保存引用，然后逐个clear
+    this.timer && clearTimeout(this.timer);
+  }
+}
+```
+
