@@ -212,3 +212,8 @@ export default class Hello extends Component {
 }
 ```
 
+## AsyncStorage
+
+> AsyncStorage是一个简单的、异步的、持久化的Key-Value存储系统，它对于App来说是全局性的。它用来代替LocalStorage。
+
+[AsyncStorage](https://reactnative.cn/docs/asyncstorage/)
