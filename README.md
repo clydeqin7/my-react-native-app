@@ -217,3 +217,34 @@ export default class Hello extends Component {
 > AsyncStorage是一个简单的、异步的、持久化的Key-Value存储系统，它对于App来说是全局性的。它用来代替LocalStorage。
 
 [AsyncStorage](https://reactnative.cn/docs/asyncstorage/)
+
+## 项目调试技巧
+
+[在React Native中调试项目技巧](https://www.imooc.com/video/14298)
+我主要记录window下Android模拟器怎么调试
+
++ 使用到哪些工具？
+
+  开发者菜单，Chrome开发者工具，真机
+
++ 怎么打开这些功能工具？
+
+  `ctrl+m`打开开发者菜单，点击`Debug JS Remotely`打开Chrome浏览器，`F12`就打开了Chrome开发者工具（作为一个前端开发就不多介绍怎么使用了）
+
+  > 注意：有时打开Chrome浏览器的URL是：http://10.0.2.2:8081/debugger-ui，可能存在无法访问的问题，将URL修改为：http://localhost:8081/debugger-ui/就能范问了
+
++ 这些工具主要有哪些特性？
+
+  开发者菜单：
+
+  **reload**: 重新加载，跟按两下`R`键是一样的效果。
+
+  **Debug JS Remotely**:见上文。
+
+  **Enable Live Reload**: 开启动态重载，将js文件的变化实时加载出来。
+
+  **Enable Hot Reloading**:开启热重载，应用程序运行过程中替换、添加或删除模块，而无需重新加载整个页面。
+
+  ...
+
+  ​

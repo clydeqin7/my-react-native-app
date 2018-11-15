@@ -5,7 +5,7 @@ import HomeScreen from './src/screen/Home'
 import SettingsScreen from './src/screen/Settings'
 import DetailsScreen from './src/screen/Details'
 import AuthLoadingScreen from './src/screen/AuthLoading'
-import OtherScreen from './src/screen/OtherScreen'
+import MessageScreen from './src/screen/Message'
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const HomeStack = createStackNavigator(
@@ -16,12 +16,12 @@ const HomeStack = createStackNavigator(
     {headerMode: 'none',});
 
 const MessageStack = createStackNavigator({
-    Settings: SettingsScreen,
+    Message: MessageScreen,
     Details: DetailsScreen,
 }, { headerMode: 'none', });
 
-const MyStack = createStackNavigator({
-    Other: OtherScreen,
+const SettingStack = createStackNavigator({
+    Settings: SettingsScreen,
     Details: DetailsScreen,
 }, { headerMode: 'none', });
 
@@ -31,7 +31,7 @@ const AppStack = createBottomTabNavigator(
             screen: HomeStack,
         },
         '消息': MessageStack,
-        '我的': MyStack
+        '设置': SettingStack
     },
     {
         navigationOptions: ({ navigation }) => ({
@@ -42,7 +42,7 @@ const AppStack = createBottomTabNavigator(
                     iconName = 'home';
                 } else if (routeName === '消息') {
                     iconName = 'notification';
-                } else if (routeName === '我的') {
+                } else if (routeName === '设置') {
                     iconName = 'setting'
                 }
 
