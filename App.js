@@ -13,12 +13,7 @@ const HomeStack = createStackNavigator(
         Home: HomeScreen,
         Details: DetailsScreen,
     },
-    {
-        headerMode: 'none',
-        // navigationOptions: ({ navigation }) => ({
-        //     title: '主页',
-        // }),
-    });
+    {headerMode: 'none',});
 
 const SettingsStack = createStackNavigator({
     Settings: SettingsScreen,
@@ -32,30 +27,30 @@ const OtherStack = createStackNavigator({
 
 const AppStack = createBottomTabNavigator(
     {
-        Home: {
+        '主页': {
             screen: HomeStack,
         },
         '消息': SettingsStack,
         '我的': OtherStack
     },
     {
-        // navigationOptions: ({ navigation }) => ({
-        //     tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        //         const { routeName } = navigation.state;
-        //         let iconName;
-        //         if (routeName === 'Home') {
-        //             iconName = 'home';
-        //         } else if (routeName === '消息') {
-        //             iconName = 'message';
-        //         } else if (routeName === '我的') {
-        //             iconName = 'setting'
-        //         }
-        //
-        //         // You can return any component that you like here! We usually use an
-        //         // icon component from react-native-vector-icons
-        //         return <Icon name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
-        //     },
-        // }),
+        navigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused, horizontal, tintColor }) => {
+                const { routeName } = navigation.state;
+                let iconName;
+                if (routeName === '主页') {
+                    iconName = 'home';
+                } else if (routeName === '消息') {
+                    iconName = 'notification';
+                } else if (routeName === '我的') {
+                    iconName = 'setting'
+                }
+
+                // You can return any component that you like here! We usually use an
+                // icon component from react-native-vector-icons
+                return <Icon name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
+            },
+        }),
         tabBarOptions: {
             activeTintColor: '#3b5998',
             inactiveTintColor: '#cccccc'
