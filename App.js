@@ -15,12 +15,12 @@ const HomeStack = createStackNavigator(
     },
     {headerMode: 'none',});
 
-const SettingsStack = createStackNavigator({
+const MessageStack = createStackNavigator({
     Settings: SettingsScreen,
     Details: DetailsScreen,
 }, { headerMode: 'none', });
 
-const OtherStack = createStackNavigator({
+const MyStack = createStackNavigator({
     Other: OtherScreen,
     Details: DetailsScreen,
 }, { headerMode: 'none', });
@@ -30,8 +30,8 @@ const AppStack = createBottomTabNavigator(
         '主页': {
             screen: HomeStack,
         },
-        '消息': SettingsStack,
-        '我的': OtherStack
+        '消息': MessageStack,
+        '我的': MyStack
     },
     {
         navigationOptions: ({ navigation }) => ({
