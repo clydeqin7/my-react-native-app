@@ -11,7 +11,8 @@
 [react navigation教程](https://reactnavigation.org/)
 [react-native-debugger github](https://github.com/jhen0409/react-native-debugger)
 
-[React-Native学习指南 各种资源的合集](https://github.com/reactnativecn/react-native-guide)
+[React-Native学习指南 各种资源的合集](https://github.com/reactnativecn/react-native-guide)  
+
 [react-native-scrollable-tab-view](https://github.com/ptomasroos/react-native-scrollable-tab-view#readme)
 
 # 新建项目
