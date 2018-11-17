@@ -8,7 +8,8 @@
 
 [React Native中文网](https://reactnative.cn/)
 
-[react navigation教程](https://reactnavigation.org/)
+[react navigation教程](https://reactnavigation.org/)  
+
 [react-native-debugger github](https://github.com/jhen0409/react-native-debugger)
 
 [React-Native学习指南 各种资源的合集](https://github.com/reactnativecn/react-native-guide)  
