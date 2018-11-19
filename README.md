@@ -14,7 +14,9 @@
 
 [React-Native学习指南 各种资源的合集](https://github.com/reactnativecn/react-native-guide)  
 
-[react-native-scrollable-tab-view](https://github.com/ptomasroos/react-native-scrollable-tab-view#readme)
+[react-native-scrollable-tab-view](https://github.com/ptomasroos/react-native-scrollable-tab-view#readme)  
+
+[平安科技移动开发二队技术周报（特别版のReact Native专题）](https://www.jianshu.com/p/96febc4fec45)
 
 # 新建项目
 
