@@ -16,7 +16,9 @@
 
 [react-native-scrollable-tab-view](https://github.com/ptomasroos/react-native-scrollable-tab-view#readme)  
 
-[平安科技移动开发二队技术周报（特别版のReact Native专题）](https://www.jianshu.com/p/96febc4fec45)
+[平安科技移动开发二队技术周报（特别版のReact Native专题）](https://www.jianshu.com/p/96febc4fec45)  
+
+[react-native兴趣交流群开源项目整理](https://www.jianshu.com/p/ced34ce5d7b1)
 
 # 新建项目
 
